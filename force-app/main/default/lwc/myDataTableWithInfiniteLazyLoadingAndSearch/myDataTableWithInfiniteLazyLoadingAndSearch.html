@@ -1,0 +1,45 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 02-21-2023
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+   <lightning-card>
+       <div class="slds-var-p-around_small">
+           <div>
+               <span
+                   class="slds-form-element__label slds-text-title_bold slds-align_absolute-center">
+                   Infinite Loading Example</span>
+           </div>
+           <div>
+               <span class="slds-form-element__label slds-text-title_bold">
+                   Total Records: {totalNumberOfRows}</span>
+           </div>
+           <div>
+               <span class="slds-form-element__label slds-text-title_bold">
+                   Displayed Records: {data.length}</span>
+           </div>
+           <div>
+               <span class="slds-form-element__label slds-text-title_bold">
+                   Total Selected: {totalSelected}</span>
+           </div>
+           <div>
+            <lightning-input 
+            type="search" 
+            onkeyup={handleKeyChange} 
+            class="slds-m-bottom_small"           
+            label="Search" 
+            value={searchKey}>
+              </lightning-input>
+           </div>
+           <div class="slds-box" style="height: 400px;">
+               <lightning-datatable key-field="Id" data-id="table"  data={data} columns={columns} load-more-offset="20"
+                   onloadmore={handleLoadMore} onrowselection ={onRowSelection} selected-rows={selectedRows}  enable-infinite-loading show-row-number-column>
+               </lightning-datatable>
+           </div>
+           {loadMoreStatus}
+       </div>
+   </lightning-card>
+</template>

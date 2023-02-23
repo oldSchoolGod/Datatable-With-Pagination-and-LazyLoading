@@ -1,0 +1,72 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 02-14-2023
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+   <lightning-card title="Lightning Datatable Example">
+      <div class="slds-grid slds-grid_vertical-align-center slds-grid_align-spread">
+         <div class="slds-col">             
+             <div class="slds-col slds-p-bottom_xx-small">
+                 <span>
+                     <label class="slds-text-color_weak slds-p-horizontal_x-small" >Total: {totalrecord}</label>  
+                 </span>  
+                 <span>
+                     <label class="slds-text-color_weak slds-p-horizontal_x-small" >Selected: {totalSelected}</label>  
+                 </span>                                                                                               
+             </div>
+         </div>
+     </div> 
+       <div class="slds-m-around_medium">
+           <lightning-input 
+               type="search" 
+               onkeyup={handleKeyChange} 
+               class="slds-m-bottom_small"           
+               label="Search" 
+               value={searchKey}>
+           </lightning-input>
+           
+           <lightning-datatable 
+               data-id="table" 
+               key-field="Id" 
+               data={data} 
+               columns={columns} 
+               sorted-by={sortedBy}
+               sorted-direction={sortedDirection} 
+               onrowselection ={onRowSelection} 
+               selected-rows={allSelectedRows} 
+               onsort={sortColumns}>
+          </lightning-datatable>
+          </br>
+
+           <lightning-layout horizontal-align="space">
+               <lightning-layout-item flexibility="auto">
+                   <lightning-button 
+                       label="Previous" 
+                       icon-name="utility:chevronleft" 
+                       onclick={previousHandler}>
+                   </lightning-button>
+               </lightning-layout-item>
+               <lightning-layout-item flexibility="auto">
+                   Page {page} of {totalPage}
+               </lightning-layout-item>
+               <lightning-layout-item flexibility="auto">
+                   <lightning-button 
+                       label="Next" 
+                       icon-name="utility:chevronright" 
+                       icon-position="right"
+                       onclick={nextHandler}>
+                   </lightning-button>
+               </lightning-layout-item>
+           </lightning-layout>
+           <template if:true={renderSaveButton}>
+            <div class="slds-m-vertical_medium">
+               <lightning-button variant="brand" label="Save" title="Primary action" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+            </div>
+           </template>
+       </div>
+   </lightning-card>
+
+</template>
